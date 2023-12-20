@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>My Tasks</h1>
+            {% for task in task_list %}
+            {% empty %}
+                <p>You have no tasks</p>
+            {% endfor %}
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Start date</th>
+                    <th>Due date</th>
+                    <th>Is completed</th>
+                </thead>
+            {% for task in task_list %}
+                <tbody>
+                    <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.start_date }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>{{ task.is_completed.value|yesno:"" }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+            </table>
+        </div>
+    </main>
+</body>
+</html>
