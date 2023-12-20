@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Lists</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>{{ project.name }}</h1>
+            <p>{{ project.description }}</p>
+            <h2>Tasks</h2>
+            {% for tasks in project.tasks.all %}
+            {% empty %}
+                <p>This project has no tasks</p>
+            {% endfor %}
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Assignee</th>
+                    <th>Start date</th>
+                    <th>Due date</th>
+                    <th>Is completed</th>
+                </thead>
+            {% for tasks in project.tasks.all %}
+                <tbody>
+                    <tr>
+                        <td>{{ tasks.name }}</td>
+                        <td>{{ tasks.assignee }}</td>
+                        <td>{{ tasks.start_date }}</td>
+                        <td>{{ tasks.due_date }}</td>
+                        <td>{{ tasks.is_completed.value|yesno:"" }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+            </table>
+        </div>
+    </main>
+</body>
+</html>
